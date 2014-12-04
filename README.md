@@ -25,7 +25,7 @@ Include RSpec::DefaultHeader into your RSpec.configuration.
 
 ```ruby
 RSpec.configure do |config|
-  config.include RSpec::DefaultHeader, type: :request
+  config.include RSpec::DefaultHttpHeader, type: :request
 end
 ```
 
