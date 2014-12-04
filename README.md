@@ -47,7 +47,7 @@ RSpec.describe 'GET /api/users.json' do
 end
 ```
 
-### Modify `default_headers` hash
+### modify default_headers hash
 
 ```ruby
 RSpec.describe 'GET /api/users.json' do
@@ -63,11 +63,11 @@ RSpec.describe 'GET /api/users.json' do
 end
 ```
 
-### Set in a batch to tests using the tag (Advanced)
+### set in a batch to tests using the tag
 
 ```ruby
 RSpec.configure do |config|
-  config.before(authorized: true) do
+  config.before(:example, type: :request, authorized: true) do
     default_headers[:Authorization] = 'your-authorization-token'
   end
 end
