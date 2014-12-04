@@ -1,6 +1,7 @@
-# Rspec::DefaultHttpHeader
+# RSpec::DefaultHttpHeader
 
-TODO: Write a gem description
+Set default http headers in request specs.
+
 
 ## Installation
 
@@ -18,13 +19,73 @@ Or install it yourself as:
 
     $ gem install rspec-default_http_header
 
+## Setup
+
+Include RSpec::DefaultHeader into your RSpec.configuration.
+
+```
+RSpec.configure do |config|
+  config.include RSpec::DefaultHeader, type: :request
+end
+```
+
 ## Usage
 
-TODO: Write usage instructions here
+### let(:default_headers)
+
+```
+RSpec.describe 'GET /api/users.json' do
+  context 'with authorization headers' do
+    let(:default_headers) { {Authorization: 'your-authorization-token'} }
+
+    before do
+      get '/api/users.json'
+    end
+
+    it { expect(response).to be_success}
+  end
+end
+```
+
+### Modify `default_headers` hash
+
+```
+RSpec.describe 'GET /api/users.json' do
+  context 'with authorization headers' do
+    before do
+      default_headers[:Authorization] = 'your-authorization-token'
+
+      get '/api/users.json'
+    end
+
+    it { expect(response).to be_success}
+  end
+end
+```
+
+### Set in a batch to tests using the tag (Advanced)
+
+```
+RSpec.configure do |config|
+  config.before(authorized: true) do
+    default_headers[:Authorization] = 'your-authorization-token'
+  end
+end
+
+RSpec.describe 'GET /api/users.json' do
+  context 'with authorization headers', :authorized do
+    before do
+      get '/api/users.json'
+    end
+
+    it { expect(response).to be_success}
+  end
+end
+```
 
 ## Contributing
 
-1. Fork it ( https://github.com/[my-github-username]/rspec-default_http_header/fork )
+1. Fork it ( https://github.com/kenchan/rspec-default_http_header/fork )
 2. Create your feature branch (`git checkout -b my-new-feature`)
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
