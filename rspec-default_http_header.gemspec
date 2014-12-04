@@ -5,12 +5,12 @@ require 'rspec/default_http_header/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "rspec-default_http_header"
-  spec.version       = Rspec::DefaultHttpHeader::VERSION
+  spec.version       = RSpec::DefaultHttpHeader::VERSION
   spec.authors       = ["Kenichi TAKAHASHI"]
   spec.email         = ["kenichi.taka@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
-  spec.homepage      = ""
+  spec.summary       = %q{Set default http headers in request specs}
+  spec.description   = %q{}
+  spec.homepage      = "http://github.com/kenchan/rspec-default_http_header"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
 
+  spec.add_dependency "rspec-rails", "~> 3.0"
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
 end
