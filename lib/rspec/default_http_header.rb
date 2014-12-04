@@ -10,7 +10,7 @@ module RSpec
       let(:default_headers) { {} }
 
       HTTP_METHODS.each do |m|
-        define_method(m) do |path, parameters = nil, headers_or_env = nil|
+        define_method(m) do |path, parameters = nil, headers_or_env = {}|
           super(path, parameters, default_headers.merge(headers_or_env))
         end
       end
