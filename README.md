@@ -23,7 +23,7 @@ Or install it yourself as:
 
 Include RSpec::DefaultHeader into your RSpec.configuration.
 
-```
+```ruby
 RSpec.configure do |config|
   config.include RSpec::DefaultHeader, type: :request
 end
@@ -33,7 +33,7 @@ end
 
 ### let(:default_headers)
 
-```
+```ruby
 RSpec.describe 'GET /api/users.json' do
   context 'with authorization headers' do
     let(:default_headers) { {Authorization: 'your-authorization-token'} }
@@ -49,7 +49,7 @@ end
 
 ### Modify `default_headers` hash
 
-```
+```ruby
 RSpec.describe 'GET /api/users.json' do
   context 'with authorization headers' do
     before do
@@ -65,7 +65,7 @@ end
 
 ### Set in a batch to tests using the tag (Advanced)
 
-```
+```ruby
 RSpec.configure do |config|
   config.before(authorized: true) do
     default_headers[:Authorization] = 'your-authorization-token'
