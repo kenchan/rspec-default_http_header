@@ -10,7 +10,7 @@ module RSpec
       let(:default_headers) { {} }
 
       HTTP_METHODS.each do |m|
-        if ActionDispatch::Integration::Session.private_method_defined?(:process_with_kwargs)
+        if ActionPack::VERSION::MAJOR >= 5
           define_method(m) do |path, *args|
             if args[0].respond_to?(:has_key?) && args[0].has_key?(:headers)
               args[0][:headers].merge!(default_headers)
