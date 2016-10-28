@@ -12,9 +12,12 @@ module RSpec
       HTTP_METHODS.each do |m|
         if ActionPack::VERSION::MAJOR >= 5
           define_method(m) do |path, *args|
-            if args[0].respond_to?(:has_key?) && args[0].has_key?(:headers)
-              args[0][:headers].merge!(default_headers)
-            end
+            args[0] ||= {}
+            args[0][:headers] = if args[0].has_key?(:headers)
+                                  default_headers.merge(args[0][:headers])
+                                else
+                                  default_headers
+                                end
 
             super(path, *args)
           end
