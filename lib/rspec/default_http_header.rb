@@ -11,15 +11,14 @@ module RSpec
 
       HTTP_METHODS.each do |m|
         if ActionPack::VERSION::MAJOR >= 5
-          define_method(m) do |path, *args|
-            args[0] ||= {}
-            args[0][:headers] = if args[0].has_key?(:headers)
-                                  default_headers.merge(args[0][:headers])
+          define_method(m) do |path, *args, **kwargs|
+            kwargs[:headers] = if kwargs.has_key?(:headers)
+                                  default_headers.merge(kwargs[:headers])
                                 else
                                   default_headers
                                 end
 
-            super(path, *args)
+            super(path, *args, **kwargs)
           end
         else
           define_method(m) do |path, parameters = nil, headers_or_env = {}|
