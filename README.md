@@ -42,7 +42,7 @@ RSpec.describe 'GET /api/users.json' do
       get '/api/users.json'
     end
 
-    it { expect(response).to be_success}
+    it { expect(response).to be_success }
   end
 end
 ```
@@ -58,7 +58,7 @@ RSpec.describe 'GET /api/users.json' do
       get '/api/users.json'
     end
 
-    it { expect(response).to be_success}
+    it { expect(response).to be_success }
   end
 end
 ```
@@ -78,7 +78,7 @@ RSpec.describe 'GET /api/users.json' do
       get '/api/users.json'
     end
 
-    it { expect(response).to be_success}
+    it { expect(response).to be_success }
   end
 end
 ```
